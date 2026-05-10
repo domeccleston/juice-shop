@@ -4,6 +4,10 @@
  */
 
 import chai from 'chai'
+import express from 'express'
+import http from 'node:http'
+import { type AddressInfo } from 'node:net'
+import { rateLimit } from 'express-rate-limit'
 import { challenges } from '../../data/datacache'
 import { type Challenge } from 'data/types'
 import { checkUploadSize, checkFileType } from '../../routes/fileUpload'
@@ -62,5 +66,38 @@ describe('fileUpload', () => {
     checkFileType(req, res, () => {})
 
     expect(challenges.uploadTypeChallenge.solved).to.equal(false)
+  })
+
+  describe('rate limiting', () => {
+    let server: http.Server
+    let port: number
+
+    before(async () => {
+      const app = express()
+      app.post('/file-upload', rateLimit({ windowMs: 5 * 60 * 1000, max: 2, validate: false }), (_req, res) => { res.status(204).end() })
+      await new Promise<void>(resolve => {
+        server = app.listen(0, () => { resolve() })
+      })
+      port = (server.address() as AddressInfo).port
+    })
+
+    after(async () => {
+      await new Promise<void>(resolve => server.close(() => { resolve() }))
+    })
+
+    const postStatus = async (path: string) => await new Promise<number>((resolve, reject) => {
+      const req = http.request({ host: '127.0.0.1', port, path, method: 'POST' }, response => {
+        response.resume()
+        resolve(response.statusCode ?? 0)
+      })
+      req.on('error', reject)
+      req.end()
+    })
+
+    it('rejects requests beyond the configured maximum on the /file-upload route', async () => {
+      expect(await postStatus('/file-upload')).to.equal(204)
+      expect(await postStatus('/file-upload')).to.equal(204)
+      expect(await postStatus('/file-upload')).to.equal(429)
+    })
   })
 })
