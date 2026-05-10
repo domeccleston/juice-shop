@@ -660,7 +660,11 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.get('/video', getVideo())
 
   /* Routes for profile page */
-  app.get('/profile', security.updateAuthenticatedUsers(), getUserProfile())
+  app.get('/profile',
+    rateLimit({ windowMs: 5 * 60 * 1000, max: 100, validate: false }),
+    security.updateAuthenticatedUsers(),
+    getUserProfile()
+  )
   app.post('/profile', updateUserProfile())
 
   /* Route for vulnerable code snippets */

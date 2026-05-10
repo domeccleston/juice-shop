@@ -43,6 +43,14 @@ describe('/profile', () => {
       .expect('bodyContains', 'id="email" type="email" name="email" value="jim@juice-sh.op"')
   })
 
+  it('GET user profile is rate-limited', () => {
+    return frisby.get(`${URL}/profile`, {
+      headers: authHeader
+    })
+      .expect('status', 200)
+      .expect('header', 'x-ratelimit-limit', '100')
+  })
+
   it('POST update username of authenticated user', () => {
     const form = frisby.formData()
     form.append('username', 'Localhorst')
