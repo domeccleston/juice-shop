@@ -6,6 +6,10 @@
 import sinon from 'sinon'
 import chai from 'chai'
 import sinonChai from 'sinon-chai'
+import express from 'express'
+import http from 'node:http'
+import { type AddressInfo } from 'node:net'
+import { rateLimit } from 'express-rate-limit'
 import { challenges } from '../../data/datacache'
 import { servePublicFiles } from '../../routes/fileServer'
 import { type Challenge } from 'data/types'
@@ -117,5 +121,37 @@ describe('fileServer', () => {
 
     expect(res.sendFile).to.have.been.calledWith(sinon.match(/ftp[/\\]suspicious_errors\.yml/))
     expect(challenges.misplacedSignatureFileChallenge.solved).to.equal(true)
+  })
+
+  describe('rate limiting', () => {
+    let server: http.Server
+    let port: number
+
+    before(async () => {
+      const app = express()
+      app.use('/ftp(?!/quarantine)/:file', rateLimit({ windowMs: 5 * 60 * 1000, max: 2, validate: false }))
+      app.use('/ftp(?!/quarantine)/:file', (_req, res) => { res.status(200).end('ok') })
+      await new Promise<void>(resolve => {
+        server = app.listen(0, () => { resolve() })
+      })
+      port = (server.address() as AddressInfo).port
+    })
+
+    after(async () => {
+      await new Promise<void>(resolve => server.close(() => { resolve() }))
+    })
+
+    const fetchStatus = async (path: string) => await new Promise<number>((resolve, reject) => {
+      http.get(`http://127.0.0.1:${port}${path}`, response => {
+        response.resume()
+        resolve(response.statusCode ?? 0)
+      }).on('error', reject)
+    })
+
+    it('rejects requests beyond the configured maximum on the /ftp/:file route', async () => {
+      expect(await fetchStatus('/ftp/test.md')).to.equal(200)
+      expect(await fetchStatus('/ftp/test.md')).to.equal(200)
+      expect(await fetchStatus('/ftp/test.md')).to.equal(429)
+    })
   })
 })
