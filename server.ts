@@ -616,7 +616,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.get('/rest/country-mapping', countryMapping())
   app.get('/rest/saveLoginIp', saveLoginIp())
   app.post('/rest/user/data-export', security.appendUserId(), verifyImageCaptcha())
-  app.post('/rest/user/data-export', security.appendUserId(), dataExport())
+  app.post('/rest/user/data-export', security.appendUserId(), rateLimit({ windowMs: 5 * 60 * 1000, max: 100, validate: false }), dataExport())
   app.get('/rest/languages', getLanguageList())
   app.get('/rest/order-history', orderHistory())
   app.get('/rest/order-history/orders', security.isAccounting(), allOrders())
