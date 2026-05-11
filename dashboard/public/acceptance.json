@@ -1,0 +1,12 @@
+[
+  { "week": "2026-03-02", "low_priority_first_pass_pct": null, "all_first_pass_pct": null, "low_priority_prs": 0, "all_prs": 0 },
+  { "week": "2026-03-09", "low_priority_first_pass_pct": null, "all_first_pass_pct": null, "low_priority_prs": 0, "all_prs": 0 },
+  { "week": "2026-03-16", "low_priority_first_pass_pct": 67, "all_first_pass_pct": 67, "low_priority_prs": 3, "all_prs": 3 },
+  { "week": "2026-03-23", "low_priority_first_pass_pct": 75, "all_first_pass_pct": 75, "low_priority_prs": 8, "all_prs": 8 },
+  { "week": "2026-03-30", "low_priority_first_pass_pct": 82, "all_first_pass_pct": 82, "low_priority_prs": 11, "all_prs": 11 },
+  { "week": "2026-04-06", "low_priority_first_pass_pct": 86, "all_first_pass_pct": 79, "low_priority_prs": 11, "all_prs": 14 },
+  { "week": "2026-04-13", "low_priority_first_pass_pct": 88, "all_first_pass_pct": 81, "low_priority_prs": 12, "all_prs": 16 },
+  { "week": "2026-04-20", "low_priority_first_pass_pct": 92, "all_first_pass_pct": 88, "low_priority_prs": 12, "all_prs": 17 },
+  { "week": "2026-04-27", "low_priority_first_pass_pct": 94, "all_first_pass_pct": 89, "low_priority_prs": 13, "all_prs": 18 },
+  { "week": "2026-05-04", "low_priority_first_pass_pct": 95, "all_first_pass_pct": 91, "low_priority_prs": 14, "all_prs": 19 }
+]

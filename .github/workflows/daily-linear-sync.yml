@@ -1,0 +1,28 @@
+name: Daily Linear sync
+
+on:
+  schedule:
+    # 09:17 UTC daily — offset from the hour per GitHub's guidance to avoid congestion
+    - cron: '17 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync open CodeQL alerts to Linear
+        env:
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: ${{ github.repository_owner }}
+          LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
+        run: npx -y tsx scripts/seed-linear.ts --execute

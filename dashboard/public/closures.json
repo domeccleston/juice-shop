@@ -1,0 +1,12 @@
+[
+  { "week": "2026-03-02", "devin": { "closed": 0, "avg_hours": 0, "within_sla_pct": 0 }, "human": { "closed": 6, "avg_hours": 168, "within_sla_pct": 67 } },
+  { "week": "2026-03-09", "devin": { "closed": 0, "avg_hours": 0, "within_sla_pct": 0 }, "human": { "closed": 7, "avg_hours": 156, "within_sla_pct": 71 } },
+  { "week": "2026-03-16", "devin": { "closed": 3, "avg_hours": 6.1, "within_sla_pct": 100 }, "human": { "closed": 5, "avg_hours": 144, "within_sla_pct": 80 } },
+  { "week": "2026-03-23", "devin": { "closed": 8, "avg_hours": 5.4, "within_sla_pct": 100 }, "human": { "closed": 5, "avg_hours": 152, "within_sla_pct": 80 } },
+  { "week": "2026-03-30", "devin": { "closed": 11, "avg_hours": 4.8, "within_sla_pct": 100 }, "human": { "closed": 5, "avg_hours": 148, "within_sla_pct": 80 } },
+  { "week": "2026-04-06", "devin": { "closed": 14, "avg_hours": 4.5, "within_sla_pct": 100 }, "human": { "closed": 6, "avg_hours": 138, "within_sla_pct": 83 } },
+  { "week": "2026-04-13", "devin": { "closed": 16, "avg_hours": 4.3, "within_sla_pct": 100 }, "human": { "closed": 5, "avg_hours": 142, "within_sla_pct": 80 } },
+  { "week": "2026-04-20", "devin": { "closed": 17, "avg_hours": 4.2, "within_sla_pct": 100 }, "human": { "closed": 5, "avg_hours": 144, "within_sla_pct": 80 } },
+  { "week": "2026-04-27", "devin": { "closed": 18, "avg_hours": 4.1, "within_sla_pct": 100 }, "human": { "closed": 5, "avg_hours": 150, "within_sla_pct": 80 } },
+  { "week": "2026-05-04", "devin": { "closed": 19, "avg_hours": 4.0, "within_sla_pct": 100 }, "human": { "closed": 5, "avg_hours": 148, "within_sla_pct": 80 } }
+]

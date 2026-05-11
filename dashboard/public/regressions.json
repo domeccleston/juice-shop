@@ -1,0 +1,16 @@
+{
+  "weekly": [
+    { "week": "2026-03-02", "candidates": 0, "confirmed": 0, "dismissed": 0 },
+    { "week": "2026-03-09", "candidates": 0, "confirmed": 0, "dismissed": 0 },
+    { "week": "2026-03-16", "candidates": 1, "confirmed": 1, "dismissed": 0 },
+    { "week": "2026-03-23", "candidates": 2, "confirmed": 0, "dismissed": 2 },
+    { "week": "2026-03-30", "candidates": 1, "confirmed": 0, "dismissed": 1 },
+    { "week": "2026-04-06", "candidates": 0, "confirmed": 0, "dismissed": 0 },
+    { "week": "2026-04-13", "candidates": 2, "confirmed": 0, "dismissed": 2 },
+    { "week": "2026-04-20", "candidates": 1, "confirmed": 0, "dismissed": 1 },
+    { "week": "2026-04-27", "candidates": 0, "confirmed": 0, "dismissed": 0 },
+    { "week": "2026-05-04", "candidates": 1, "confirmed": 0, "dismissed": 1 }
+  ],
+  "days_since_last_confirmed": 53,
+  "total_confirmed_60d": 0
+}

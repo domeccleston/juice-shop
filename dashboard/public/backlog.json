@@ -1,0 +1,12 @@
+[
+  { "week": "2026-03-02", "error": 5, "warning": 55, "note": 18, "median_age_days": 18, "sla_breaches": 4 },
+  { "week": "2026-03-09", "error": 5, "warning": 54, "note": 17, "median_age_days": 17, "sla_breaches": 4 },
+  { "week": "2026-03-16", "error": 5, "warning": 52, "note": 16, "median_age_days": 15, "sla_breaches": 3 },
+  { "week": "2026-03-23", "error": 4, "warning": 50, "note": 16, "median_age_days": 13, "sla_breaches": 3 },
+  { "week": "2026-03-30", "error": 4, "warning": 48, "note": 15, "median_age_days": 12, "sla_breaches": 2 },
+  { "week": "2026-04-06", "error": 3, "warning": 45, "note": 14, "median_age_days": 10, "sla_breaches": 2 },
+  { "week": "2026-04-13", "error": 3, "warning": 43, "note": 13, "median_age_days": 9, "sla_breaches": 1 },
+  { "week": "2026-04-20", "error": 2, "warning": 41, "note": 12, "median_age_days": 8, "sla_breaches": 1 },
+  { "week": "2026-04-27", "error": 2, "warning": 38, "note": 10, "median_age_days": 7, "sla_breaches": 0 },
+  { "week": "2026-05-04", "error": 1, "warning": 30, "note": 7, "median_age_days": 6, "sla_breaches": 0 }
+]

@@ -1,0 +1,34 @@
+# MedSecure Code Ownership
+#
+# This file is the authoritative source of ownership for security findings,
+# per MedSecure AppSec policy. Reassigning a finding requires a PR to this
+# file. Last matching pattern wins (per GitHub CODEOWNERS semantics) — so
+# the default rule is first and specific rules below override it.
+#
+# Reviewed quarterly by AppSec.
+
+# Default fallback — AppSec owns anything not claimed below
+*                           @medsecure/appsec
+
+# HTTP/REST API surface
+/routes/                    @medsecure/api-team
+
+# Shared libraries and utilities
+/lib/                       @medsecure/platform-team
+
+# Seed data and fixtures
+/data/                      @medsecure/data-team
+
+# Server entrypoint and config
+/server.ts                  @medsecure/platform-team
+/config/                    @medsecure/platform-team
+
+# Frontend
+/frontend/                  @medsecure/frontend-team
+
+# Models / persistence
+/models/                    @medsecure/backend-team
+
+# Security policy documents — owned by AppSec lead. This is the
+# accountable-human anchor for auto-merged Low-tier PRs.
+/docs/security/             @medsecure/appsec-lead
