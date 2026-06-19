@@ -85,4 +85,14 @@ describe('redirect', () => {
 
     expect(challenges.redirectChallenge.solved).to.equal(true)
   })
+
+  it('should not redirect to a tricked URL even if the legacy allowlist check passes', () => {
+    req.query.to = 'http://kimminich.de?to=https://github.com/juice-shop/juice-shop'
+    challenges.redirectChallenge = { solved: false, save } as unknown as Challenge
+
+    performRedirect()(req, res, next)
+
+    expect(res.redirect).to.have.not.been.calledWith(sinon.match.any)
+    expect(next).to.have.been.calledWith(sinon.match.instanceOf(Error))
+  })
 })
