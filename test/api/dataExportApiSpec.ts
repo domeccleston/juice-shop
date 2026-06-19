@@ -371,4 +371,24 @@ describe('/rest/user/data-export', () => {
           })
       })
   })
+
+  it('Data export endpoint emits standard rate-limit headers', () => {
+    return frisby.post(REST_URL + '/user/login', {
+      headers: jsonHeader,
+      body: {
+        email: 'bjoern.kimminich@gmail.com',
+        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+      }
+    })
+      .expect('status', 200)
+      .then(({ json: jsonLogin }) => {
+        return frisby.post(REST_URL + '/user/data-export', {
+          headers: { Authorization: 'Bearer ' + jsonLogin.authentication.token, 'content-type': 'application/json' },
+          body: { format: '1' }
+        })
+          .expect('status', 200)
+          .expect('header', 'x-ratelimit-limit', /\d+/)
+          .expect('header', 'x-ratelimit-remaining', /\d+/)
+      })
+  })
 })
