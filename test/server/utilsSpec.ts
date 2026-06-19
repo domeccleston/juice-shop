@@ -195,6 +195,28 @@ describe('utils', () => {
     })
   })
 
+  describe('containsEscaped', () => {
+    it('finds element with double quotes when JSON-escaped in haystack', () => {
+      const haystack = JSON.stringify({ note: 'say "hi"' })
+      expect(utils.containsEscaped(haystack, 'say "hi"')).to.equal(true)
+    })
+
+    it('finds element with backslashes when JSON-escaped in haystack', () => {
+      const haystack = JSON.stringify({ path: 'C:\\Users\\admin' })
+      expect(utils.containsEscaped(haystack, 'C:\\Users\\admin')).to.equal(true)
+    })
+
+    it('finds element mixing backslashes and quotes when JSON-escaped in haystack', () => {
+      const haystack = JSON.stringify({ raw: 'a\\"b' })
+      expect(utils.containsEscaped(haystack, 'a\\"b')).to.equal(true)
+    })
+
+    it('rejects element not present in haystack', () => {
+      const haystack = JSON.stringify({ note: 'plain text' })
+      expect(utils.containsEscaped(haystack, 'nope')).to.equal(false)
+    })
+  })
+
   describe('toISO8601', () => {
     it('converts date to ISO 8601 representation', () => {
       expect(utils.toISO8601(new Date('2025-12-15T00:00:00Z'))).to.equal('2025-12-15')
